@@ -143,8 +143,6 @@
                 
                 <!-- BACKGROUND BANNER DARI FOTO ANDA -->
                 <div class="absolute inset-0 z-0">
-                    <!-- opacity-15 berarti transparansi 15% agar teks di atasnya tetap sangat jelas terbaca. 
-                         Anda bisa menaikkannya ke opacity-25 atau opacity-30 jika foto Anda dominan warna terang/putih. -->
                     <img src="banner.jpg" alt="Banner Fast.Shop.ID" class="w-full h-full object-cover opacity-15" onerror="this.style.display='none'">
                     <!-- Gradasi lembut untuk memadukan gambar banner dengan background putih website -->
                     <div class="absolute inset-0 bg-gradient-to-b from-slate-100/30 via-white/80 to-white"></div>
@@ -188,7 +186,7 @@
                             <div class="text-mlGold mb-4">
                                 <i data-lucide="shield-check" class="w-12 h-12"></i>
                             </div>
-                            <h3 class="font-classic text-xl font-bold mb-3 text-slate-900">Keamanan Transaksi 100%</h3>
+                            <h3 class="font-classic text-xl font-bold mb-3">Keamanan Transaksi 100%</h3>
                             <p class="text-slate-500 text-sm leading-relaxed">
                                 Sistem verifikasi berlapis, proteksi pembeli & penjual, serta garansi anti-hackback yang komprehensif dari tim analis profesional.
                             </p>
@@ -200,7 +198,7 @@
                             <div class="text-mlGold mb-4">
                                 <i data-lucide="wallet-2" class="w-12 h-12"></i>
                             </div>
-                            <h3 class="font-classic text-xl font-bold mb-3 text-slate-900">Metode Pembayaran Global</h3>
+                            <h3 class="font-classic text-xl font-bold mb-3">Metode Pembayaran Global</h3>
                             <p class="text-slate-500 text-sm leading-relaxed">
                                 Bebas hambatan kartu kredit internasional. Kami mendukung pembayaran instan via Cryptocurrency (USDT/BTC) dan PayPal untuk pembeli seluruh dunia.
                             </p>
@@ -212,7 +210,7 @@
                             <div class="text-mlGold mb-4">
                                 <i data-lucide="zap" class="w-12 h-12"></i>
                             </div>
-                            <h3 class="font-classic text-xl font-bold mb-3 text-slate-900">Pemrosesan Otomatis</h3>
+                            <h3 class="font-classic text-xl font-bold mb-3">Pemrosesan Otomatis</h3>
                             <p class="text-slate-500 text-sm leading-relaxed">
                                 Dengan sistem integrasi kami, serah terima data kredensial akun berjalan cepat dan termonitor di dashboard transaksi Anda secara real-time.
                             </p>
@@ -590,15 +588,15 @@
 
     <!-- JAVASCRIPT LOGIC -->
     <script>
-        // Database Akun Mobile Legends (4 Produk Ready dengan spesifikasi persis dari Anda + 1 Terjual agar pas minimal 5 produk)
+        // Database Akun Mobile Legends yang mengarah ke file asli Anda di GitHub root
         const products = [
             {
                 id: "mlbb-ready-01",
-                name: "mythic hero max",
-                price: 3330000,
+                name: "Akun Premium Collector - High Tier Edition",
+                price: 8500000,
                 status: "READY",
                 short_desc: "Akun High-Tier teratas dengan koleksi skin super lengkap siap pakai untuk turnamen pro.",
-                image: "images/mythic-hero-max.jpeg",
+                image: "mythic-hero-max-skin-429.jpeg", // <--- Menggunakan file milik Anda
                 rank: "Mythic",
                 hero_count: "MAX",
                 emblem_lvl: "MAX",
@@ -609,11 +607,11 @@
             },
             {
                 id: "mlbb-ready-02",
-                name: "legend 5 hero 82 skin140",
-                price: 440000,
+                name: "Akun Fighter Legend - Mid Tier Edition",
+                price: 1450000,
                 status: "READY",
                 short_desc: "Keseimbangan heroisme dan emblem maksimal untuk push rank yang efektif di tier Legend.",
-                image: "images/legend-5-hero-82-skin140.jpeg",
+                image: "legend-5-hero-82-skin140.jpeg", // <--- Menggunakan file milik Anda
                 rank: "Legend 5",
                 hero_count: "82",
                 emblem_lvl: "MAX",
@@ -624,11 +622,11 @@
             },
             {
                 id: "mlbb-ready-03",
-                name: "legend 5 hero 82 skin135",
-                price: 375000,
+                name: "Akun Legend Combat - Solid Fighter Pack",
+                price: 1350000,
                 status: "READY",
                 short_desc: "Akun fighter handal dengan pilihan hero serbaguna dan status emblem tertinggi.",
-                image: "images/legend-5-hero-82-skin35.jpeg",
+                image: "legend-5-hero-82-skin35.jpeg", // <--- Menggunakan file milik Anda
                 rank: "Legend 5",
                 hero_count: "85",
                 emblem_lvl: "MAX",
@@ -639,11 +637,11 @@
             },
             {
                 id: "mlbb-ready-04",
-                name: "mythic hero 76",
-                price: 414000,
+                name: "Akun Mythic Collector - Limited Skin Pack",
+                price: 1850000,
                 status: "READY",
                 short_desc: "Kombinasi eksklusif skin limited super langka dan tier legendaris Mythic.",
-                image: "images/mythic-hero-76.jpeg",
+                image: "mythic-hero-76.jpeg", // <--- Menggunakan file milik Anda
                 rank: "Mythic",
                 hero_count: "76",
                 emblem_lvl: "MAX",
@@ -654,11 +652,11 @@
             },
             {
                 id: "mlbb-sold-05",
-                name: "mythic hero max skin 429",
+                name: "Akun Challenger Edition - Elite Tier",
                 price: 2100000,
                 status: "TERJUAL",
                 short_desc: "Akun kompetitif dengan riwayat skin turnamen yang solid. (Stok Terjual)",
-                image: "images/mythic-hero-max-skin-429.jpeg",
+                image: "mythic-hero-max.jpeg", // <--- Menggunakan file milik Anda
                 rank: "Mythic Honor",
                 hero_count: "90",
                 emblem_lvl: "MAX",
