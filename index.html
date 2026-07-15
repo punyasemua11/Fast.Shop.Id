@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fast.Shop.ID - Platform Jual Beli Akun MLBB Aman & Terpercaya</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons for Premium UI Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        mlNavy: {
+                            DEFAULT: '#1e293b',    /* Slate/Navy cerah dan elegan untuk teks/aksen */
+                            light: '#f1f5f9',      /* Latar belakang abu-abu sangat muda */
+                            deep: '#0f172a'
+                        },
+                        mlGold: {
+                            DEFAULT: '#b59410',    /* Emas champagne yang lebih hangat agar kontras di bg putih */
+                            dark: '#927203',       /* Emas gelap */
+                            bright: '#ebd077'      /* Emas soft */
+                        },
+                        mlGray: {
+                            DEFAULT: '#64748b',    /* Abu-abu slate */
+                            light: '#f8fafc',      /* Latar belakang putih pudar */
+                            dark: '#334155'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Cinzel', 'Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@300;400;600;700&display=swap');
+        
+        .font-classic {
+            font-family: 'Cinzel', serif;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff; /* Mengubah background utama menjadi Putih Bersih */
+            color: #1e293b; /* Warna teks utama menjadi Slate gelap agar kontras */
+        }
+        
+        /* Custom Scrollbar for white theme */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #ebd077;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #b59410;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <!-- HEADER / NAVIGASI -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-50 shadow-sm backdrop-blur-md bg-opacity-95">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                
+                <!-- Logo Brand -->
+                <div class="flex items-center cursor-pointer" onclick="navigate('home')">
+                    <div class="relative flex items-center justify-center w-11 h-11 rounded-lg bg-gradient-to-br from-mlGold via-mlGold-bright to-mlGold-dark p-0.5 shadow-sm">
+                        <div class="bg-white w-full h-full rounded-lg flex items-center justify-center">
+                            <!-- Butterfly Logo Mark -->
+                            <svg class="w-7 h-7 text-mlGold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 21a9.003 9.003 0 008.367-5.633l-1.077-1.077a9 9 0 00-11.233 0l-1.077 1.077A9.003 9.003 0 0012 21z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 12a7 7 0 00-14 0c0 2.5 1.5 4.5 3.5 5.5l1-1a5 5 0 017 0l1 1c2-1 3.5-3 3.5-5.5z" />
+                            </svg>
+                        </div>
+                    </div>
+                    <span class="ml-3 text-2xl font-black font-classic tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-mlNavy to-mlGold">
+                        Fast.Shop<span class="text-xs align-super text-mlGold">.ID</span>
+                    </span>
+                </div>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden md:flex space-x-8">
+                    <button id="nav-home" onclick="navigate('home')" class="nav-btn font-classic text-mlGold hover:text-mlNavy transition tracking-wide text-sm font-bold flex items-center gap-1.5 py-2 border-b-2 border-mlGold">
+                        <i data-lucide="home" class="w-4 h-4"></i> Beranda
+                    </button>
+                    <button id="nav-products" onclick="navigate('products')" class="nav-btn font-classic text-slate-600 hover:text-mlGold transition tracking-wide text-sm font-bold flex items-center gap-1.5 py-2 border-b-2 border-transparent">
+                        <i data-lucide="shield-check" class="w-4 h-4"></i> Akun MLBB
+                    </button>
+                    <button id="nav-contact" onclick="navigate('contact')" class="nav-btn font-classic text-slate-600 hover:text-mlGold transition tracking-wide text-sm font-bold flex items-center gap-1.5 py-2 border-b-2 border-transparent">
+                        <i data-lucide="mail" class="w-4 h-4"></i> Kontak
+                    </button>
+                </nav>
+
+                <!-- Right Utility Icons (Cart, Mobile Toggle) -->
+                <div class="flex items-center space-x-4">
+                    <!-- Cart Indicator -->
+                    <button onclick="navigate('cart')" class="relative p-2.5 text-slate-600 hover:text-mlGold transition-colors bg-slate-100 rounded-lg">
+                        <i data-lucide="shopping-cart" class="w-5.5 h-5.5"></i>
+                        <span id="cart-badge" class="absolute -top-1.5 -right-1.5 bg-red-500 text-white text-[10px] font-bold rounded-full w-5 h-5 flex items-center justify-center border-2 border-white">0</span>
+                    </button>
+                    
+                    <!-- Mobile Menu Button -->
+                    <button id="mobile-menu-btn" class="md:hidden p-2 text-slate-600 hover:text-mlGold focus:outline-none">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-slate-50 border-t border-slate-200 px-4 pt-2 pb-4 space-y-2">
+            <button onclick="navigate('home')" class="block w-full text-left px-3 py-2.5 rounded font-classic font-bold text-mlGold flex items-center gap-2">
+                <i data-lucide="home" class="w-4 h-4"></i> Beranda
+            </button>
+            <button onclick="navigate('products')" class="block w-full text-left px-3 py-2.5 rounded font-classic font-bold text-slate-600 hover:text-mlGold flex items-center gap-2">
+                <i data-lucide="shield-check" class="w-4 h-4"></i> Akun MLBB
+            </button>
+            <button onclick="navigate('contact')" class="block w-full text-left px-3 py-2.5 rounded font-classic font-bold text-slate-600 hover:text-mlGold flex items-center gap-2">
+                <i data-lucide="mail" class="w-4 h-4"></i> Kontak
+            </button>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="flex-grow">
+        
+        <!-- ================= HOME VIEW ================= -->
+        <section id="view-home" class="view-section">
+            <!-- Hero Section -->
+            <div class="relative bg-slate-100 py-28 px-4 sm:px-6 lg:px-8 text-center overflow-hidden border-b border-slate-200">
+                
+                <!-- BACKGROUND BANNER DARI FOTO ANDA -->
+                <div class="absolute inset-0 z-0">
+                    <!-- opacity-15 berarti transparansi 15% agar teks di atasnya tetap sangat jelas terbaca. 
+                         Anda bisa menaikkannya ke opacity-25 atau opacity-30 jika foto Anda dominan warna terang/putih. -->
+                    <img src="banner.jpg" alt="Banner Fast.Shop.ID" class="w-full h-full object-cover opacity-15" onerror="this.style.display='none'">
+                    <!-- Gradasi lembut untuk memadukan gambar banner dengan background putih website -->
+                    <div class="absolute inset-0 bg-gradient-to-b from-slate-100/30 via-white/80 to-white"></div>
+                </div>
+                
+                <div class="max-w-4xl mx-auto relative z-10">
+                    <div class="inline-flex items-center gap-2 bg-amber-50 border border-mlGold/30 text-mlGold rounded-full px-4 py-1.5 text-xs font-bold uppercase tracking-widest mb-6">
+                        <i data-lucide="badge-check" class="w-4 h-4 text-mlGold animate-pulse"></i> AMAN & TERPERCAYA SEJAK 2021
+                    </div>
+                    <h1 class="font-classic text-4xl sm:text-6xl font-black tracking-wider text-slate-900 mb-6 uppercase">
+                        Koleksi Akun MLBB <br class="hidden sm:inline">
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-mlGold to-mlNavy font-extrabold">Pilihan & Terverifikasi</span>
+                    </h1>
+                    <p class="text-slate-700 text-base sm:text-lg max-w-2xl mx-auto mb-10 font-semibold leading-relaxed drop-shadow-sm">
+                        Platform Layanan Jual Beli Akun Game Online Mobile Legends yang Aman, Cepat, dan Fleksibel Menggunakan Metode Pembayaran Terenkripsi <span class="text-mlGold font-bold">Crypto</span> & <span class="text-blue-600 font-bold">PayPal</span>.
+                    </p>
+                    <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                        <button onclick="navigate('products')" class="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-mlGold to-mlGold-dark text-white font-classic font-bold uppercase tracking-wider rounded-lg shadow-md hover:brightness-110 hover:scale-[1.02] transition transform duration-200">
+                            Jelajahi Akun MLBB
+                        </button>
+                        <button onclick="navigate('contact')" class="w-full sm:w-auto px-8 py-4 bg-white border border-slate-300 text-slate-700 font-classic font-bold uppercase tracking-wider rounded-lg hover:bg-slate-50 transition">
+                            Hubungi Tim Kami
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Value Proposition (Keunggulan) -->
+            <div class="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="font-classic text-3xl font-bold uppercase tracking-widest text-slate-900">
+                        Mengapa Harus Fast.Shop.ID?
+                    </h2>
+                    <div class="h-1 w-24 bg-mlGold mx-auto mt-4 rounded-full"></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Card 1 -->
+                    <div class="bg-white p-8 rounded-lg border border-slate-200 hover:border-mlGold/50 hover:shadow-lg transition flex flex-col justify-between">
+                        <div>
+                            <div class="text-mlGold mb-4">
+                                <i data-lucide="shield-check" class="w-12 h-12"></i>
+                            </div>
+                            <h3 class="font-classic text-xl font-bold mb-3 text-slate-900">Keamanan Transaksi 100%</h3>
+                            <p class="text-slate-500 text-sm leading-relaxed">
+                                Sistem verifikasi berlapis, proteksi pembeli & penjual, serta garansi anti-hackback yang komprehensif dari tim analis profesional.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="bg-white p-8 rounded-lg border border-slate-200 hover:border-mlGold/50 hover:shadow-lg transition flex flex-col justify-between">
+                        <div>
+                            <div class="text-mlGold mb-4">
+                                <i data-lucide="wallet-2" class="w-12 h-12"></i>
+                            </div>
+                            <h3 class="font-classic text-xl font-bold mb-3 text-slate-900">Metode Pembayaran Global</h3>
+                            <p class="text-slate-500 text-sm leading-relaxed">
+                                Bebas hambatan kartu kredit internasional. Kami mendukung pembayaran instan via Cryptocurrency (USDT/BTC) dan PayPal untuk pembeli seluruh dunia.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="bg-white p-8 rounded-lg border border-slate-200 hover:border-mlGold/50 hover:shadow-lg transition flex flex-col justify-between">
+                        <div>
+                            <div class="text-mlGold mb-4">
+                                <i data-lucide="zap" class="w-12 h-12"></i>
+                            </div>
+                            <h3 class="font-classic text-xl font-bold mb-3 text-slate-900">Pemrosesan Otomatis</h3>
+                            <p class="text-slate-500 text-sm leading-relaxed">
+                                Dengan sistem integrasi kami, serah terima data kredensial akun berjalan cepat dan termonitor di dashboard transaksi Anda secara real-time.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Featured Products (Produk Unggulan) -->
+            <div class="max-w-7xl mx-auto pb-20 px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between mb-12">
+                    <div>
+                        <h2 class="font-classic text-2xl sm:text-3xl font-bold uppercase tracking-widest text-slate-900">Rekomendasi Akun Terbaru</h2>
+                        <p class="text-slate-500 text-sm mt-1">Daftar stok akun Mobile Legends terverifikasi minggu ini</p>
+                    </div>
+                    <button onclick="navigate('products')" class="hidden sm:inline-flex items-center gap-1 text-mlGold hover:text-mlGold-dark font-classic font-bold uppercase text-xs tracking-wider transition">
+                        Semua Akun <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </button>
+                </div>
+
+                <!-- Product Grid (Dinamis dari JS) -->
+                <div id="featured-products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Terisi otomatis oleh JS -->
+                </div>
+            </div>
+
+            <!-- Founder & Team Section (Materi PPT) -->
+            <div class="bg-slate-50 border-y border-slate-200 py-16">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                        <div>
+                            <span class="text-mlGold font-bold uppercase text-xs tracking-widest">VISI & KEPEMIMPINAN</span>
+                            <h2 class="font-classic text-3xl sm:text-4xl font-bold uppercase tracking-wider text-slate-900 mt-2 mb-6">
+                                Dibangun oleh Gamer, <br>Untuk Gamer
+                            </h2>
+                            <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                                Fast.Shop.ID didirikan atas dasar <span class="text-mlGold font-bold">Customer First</span>, <span class="text-mlGold font-bold">Data Driven Decision</span>, dan <span class="text-mlGold font-bold">Continuous Improvement</span>. Kami memantau game terpopuler, menganalisis perilaku pasar, dan memperbarui fitur website secara berkala untuk menjaga rasa aman Anda.
+                            </p>
+                            
+                            <div class="grid grid-cols-2 gap-6 text-sm">
+                                <div class="p-4 rounded-lg bg-white border border-slate-200 shadow-sm">
+                                    <div class="text-mlGold font-bold font-classic">VISI UTAMA</div>
+                                    <p class="text-xs text-slate-500 mt-1 leading-relaxed">Menjadi platform jual beli akun game berbasis pembayaran digital global terbesar dan terpercaya di Indonesia.</p>
+                                </div>
+                                <div class="p-4 rounded-lg bg-white border border-slate-200 shadow-sm">
+                                    <div class="text-mlGold font-bold font-classic">TIM FOUNDER</div>
+                                    <p class="text-xs text-slate-500 mt-1 leading-relaxed">Fahri Rafiandi H., Farhan Kemal A., Fasty Pandita A., Fikran Al Azis.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="relative bg-white p-8 rounded-lg border border-slate-200 shadow-md overflow-hidden">
+                            <div class="absolute -right-12 -bottom-12 w-48 h-48 bg-amber-50 rounded-full blur-2xl"></div>
+                            <h3 class="font-classic text-xl font-bold text-slate-950 mb-4 flex items-center gap-2">
+                                <i data-lucide="bar-chart-3" class="text-mlGold"></i> Proyeksi Unit Economics
+                            </h3>
+                            <p class="text-slate-600 text-xs leading-relaxed mb-4">
+                                Berdasarkan evaluasi kelayakan startup, rasio LTV/CAC kami mencapai <span class="text-mlGold font-bold">10:1</span> (LTV: Rp250.000 / CAC: Rp25.000), yang membuktikan platform Fast.Shop.ID sangat sehat dan layak untuk ekspansi pasar berkelanjutan.
+                            </p>
+                            <div class="space-y-3 text-xs text-slate-700">
+                                <div class="flex justify-between border-b border-slate-100 pb-1.5">
+                                    <span class="text-slate-500">Rata-rata Transaksi</span>
+                                    <span class="text-slate-900 font-bold">Rp100.000</span>
+                                </div>
+                                <div class="flex justify-between border-b border-slate-100 pb-1.5">
+                                    <span class="text-slate-500">Pendapatan Tahun 1</span>
+                                    <span class="text-slate-900 font-bold">Rp200.000.000 (Margin 15%)</span>
+                                </div>
+                                <div class="flex justify-between border-b border-slate-100 pb-1.5">
+                                    <span class="text-slate-500">Proyeksi Laba Tahun 3</span>
+                                    <span class="text-mlGold font-bold">Rp300.000.000</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ================= PRODUCTS LIST VIEW ================= -->
+        <section id="view-products" class="view-section hidden max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <span class="text-mlGold font-bold uppercase text-xs tracking-widest">DAFTAR KATALOG</span>
+                <h1 class="font-classic text-4xl font-bold uppercase tracking-wider text-slate-900 mt-1">Katalog Akun Mobile Legends</h1>
+                <p class="text-slate-500 text-sm mt-2">Dapatkan akun impian dengan skin langka, Win Rate tinggi, dan verifikasi keamanan premium.</p>
+                <div class="h-1 w-24 bg-mlGold mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <!-- Grid Konten Semua Produk -->
+            <div id="all-products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Terisi otomatis oleh JS -->
+            </div>
+        </section>
+
+
+        <!-- ================= PRODUCT DETAIL VIEW ================= -->
+        <section id="view-product-detail" class="view-section hidden max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+            <!-- Navigasi Kembali -->
+            <button onclick="navigate('products')" class="inline-flex items-center gap-2 text-mlGold hover:text-mlGold-dark font-classic font-bold text-sm uppercase tracking-wider transition mb-8">
+                <i data-lucide="arrow-left" class="w-4 h-4"></i> Kembali ke Katalog
+            </button>
+
+            <!-- Layout Detail Produk -->
+            <div id="detail-container" class="bg-white border border-slate-200 rounded-lg p-6 sm:p-10 shadow-lg">
+                <!-- Terisi dinamis saat diklik detail -->
+            </div>
+        </section>
+
+
+        <!-- ================= CART VIEW ================= -->
+        <section id="view-cart" class="view-section hidden max-w-5xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+            <h1 class="font-classic text-4xl font-bold uppercase tracking-wider text-slate-900 mb-8 text-center sm:text-left">
+                Keranjang Belanja Anda
+            </h1>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Daftar Item Keranjang -->
+                <div class="lg:col-span-2 space-y-4" id="cart-items-container">
+                    <!-- Terisi dinamis oleh JS -->
+                </div>
+
+                <!-- Ringkasan Pesanan -->
+                <div class="bg-slate-50 border border-slate-200 rounded-lg p-6 h-fit">
+                    <h3 class="font-classic text-xl font-bold text-slate-900 mb-6 border-b border-slate-200 pb-2">Ringkasan Tagihan</h3>
+                    <div class="space-y-4 text-sm mb-6">
+                        <div class="flex justify-between text-slate-500">
+                            <span>Subtotal Akun</span>
+                            <span id="cart-subtotal" class="text-slate-900 font-bold">Rp0</span>
+                        </div>
+                        <div class="flex justify-between text-slate-500">
+                            <span>Biaya Layanan</span>
+                            <span class="text-green-600 font-bold">Rp0 (GRATIS)</span>
+                        </div>
+                        <div class="flex justify-between text-base font-classic border-t border-slate-200 pt-4 text-slate-900">
+                            <span>Total Pembayaran</span>
+                            <span id="cart-total" class="text-mlGold font-bold">Rp0</span>
+                        </div>
+                    </div>
+                    
+                    <button onclick="navigate('checkout')" class="w-full py-4 bg-gradient-to-r from-mlGold to-mlGold-dark text-white font-classic font-bold uppercase tracking-wider rounded-lg shadow-md hover:brightness-110 transition">
+                        Lanjut ke Pembayaran
+                    </button>
+                    <button onclick="navigate('products')" class="w-full mt-3 py-2 text-center text-xs text-slate-500 hover:text-mlGold transition">
+                        Kembali Belanja
+                    </button>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ================= CHECKOUT VIEW ================= -->
+        <section id="view-checkout" class="view-section hidden max-w-4xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+            <h1 class="font-classic text-4xl font-bold uppercase tracking-wider text-slate-900 mb-8 text-center">
+                Portal Pembayaran Aman
+            </h1>
+
+            <div class="bg-white border border-slate-200 rounded-lg p-6 sm:p-10 shadow-lg">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                    <!-- Ringkasan Produk -->
+                    <div>
+                        <h3 class="font-classic text-lg font-bold text-mlGold mb-4 border-b border-slate-200 pb-2">Informasi Pembelian</h3>
+                        <div id="checkout-product-summary" class="space-y-4">
+                            <!-- Terisi otomatis -->
+                        </div>
+                    </div>
+
+                    <!-- Pilihan Pembayaran -->
+                    <div>
+                        <h3 class="font-classic text-lg font-bold text-mlGold mb-4 border-b border-slate-200 pb-2">Metode Pembayaran Global</h3>
+                        <p class="text-xs text-slate-500 mb-4">Pilih salah satu metode pembayaran di bawah untuk verifikasi instan.</p>
+                        
+                        <div class="space-y-3">
+                            <!-- Crypto Option -->
+                            <label class="flex items-center gap-3 p-4 bg-slate-50 border border-slate-200 rounded-lg cursor-pointer hover:border-mlGold/40 transition">
+                                <input type="radio" name="payment_method" value="crypto" checked class="text-mlGold focus:ring-mlGold">
+                                <div class="flex items-center justify-between w-full">
+                                    <div class="flex items-center gap-2">
+                                        <i data-lucide="wallet-2" class="w-5 h-5 text-mlGold"></i>
+                                        <span class="text-sm font-bold text-slate-900">Cryptocurrency</span>
+                                    </div>
+                                    <span class="text-[10px] bg-amber-50 text-mlGold px-2 py-0.5 rounded font-bold uppercase">USDT, BTC, ETH</span>
+                                </div>
+                            </label>
+
+                            <!-- PayPal Option -->
+                            <label class="flex items-center gap-3 p-4 bg-slate-50 border border-slate-200 rounded-lg cursor-pointer hover:border-mlGold/40 transition">
+                                <input type="radio" name="payment_method" value="paypal" class="text-mlGold focus:ring-mlGold">
+                                <div class="flex items-center justify-between w-full">
+                                    <div class="flex items-center gap-2">
+                                        <i data-lucide="credit-card" class="w-5 h-5 text-blue-500"></i>
+                                        <span class="text-sm font-bold text-slate-900">PayPal</span>
+                                    </div>
+                                    <span class="text-[10px] bg-blue-500/10 text-blue-600 px-2 py-0.5 rounded font-bold uppercase">Global Credit Card</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Formulir Kredensial -->
+                <div class="border-t border-slate-200 pt-6">
+                    <h3 class="font-classic text-lg font-bold text-slate-900 mb-4">Detail Pengiriman Kredensial</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs text-slate-500 uppercase font-bold tracking-wider mb-2">Alamat Email Pengiriman</label>
+                            <input type="email" id="checkout-email" placeholder="nama@email.com" class="w-full bg-slate-50 border border-slate-200 focus:border-mlGold rounded px-4 py-3 text-sm text-slate-900 focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-slate-500 uppercase font-bold tracking-wider mb-2">No. WhatsApp Aktif</label>
+                            <input type="text" id="checkout-phone" placeholder="089619365533" class="w-full bg-slate-50 border border-slate-200 focus:border-mlGold rounded px-4 py-3 text-sm text-slate-900 focus:outline-none">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+                    <div class="text-center sm:text-left">
+                        <p class="text-xs text-slate-500">Dengan menekan tombol, Anda menyetujui Aturan Transaksi Fast.Shop.ID.</p>
+                    </div>
+                    <button onclick="processCheckout()" class="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-mlGold to-mlGold-dark text-white font-classic font-bold uppercase tracking-wider rounded-lg hover:brightness-110 transition">
+                        Selesaikan Transaksi Sekarang
+                    </button>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ================= CONTACT VIEW ================= -->
+        <section id="view-contact" class="view-section hidden max-w-5xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <span class="text-mlGold font-bold uppercase text-xs tracking-widest">CUSTOMER SUPPORT 24/7</span>
+                <h1 class="font-classic text-4xl font-bold uppercase tracking-wider text-slate-900 mt-1">Formulir Kontak</h1>
+                <p class="text-slate-500 text-sm mt-2">Butuh bantuan, custom order, atau konsultasi? Kami siap membantu transaksi Anda kapan saja.</p>
+                <div class="h-1 w-24 bg-mlGold mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-stretch">
+                <!-- Detail Kontak Resmi -->
+                <div class="bg-slate-50 border border-slate-200 rounded-lg p-8 flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-classic text-2xl font-bold text-mlGold mb-4 uppercase">Kantor Pusat Layanan</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-8">
+                            Kami selalu mengutamakan layanan responsif demi melindungi kenyamanan pelanggan. Silakan hubungi admin kami melalui saluran resmi di bawah ini.
+                        </p>
+
+                        <div class="space-y-4 text-sm">
+                            <div class="flex items-center gap-3">
+                                <div class="text-mlGold bg-amber-50 p-2 rounded-lg">
+                                    <i data-lucide="phone" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-slate-400 uppercase tracking-widest">WhatsApp Khusus Transaksi</p>
+                                    <p class="text-slate-900 font-bold">0896-1936-5533 (WA Only)</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="text-mlGold bg-amber-50 p-2 rounded-lg">
+                                    <i data-lucide="instagram" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-slate-400 uppercase tracking-widest">Instagram Resmi</p>
+                                    <p class="text-slate-900 font-bold">@fast.shop.id</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="text-mlGold bg-amber-50 p-2 rounded-lg">
+                                    <i data-lucide="user-check" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-slate-400 uppercase tracking-widest">Rekening Terverifikasi</p>
+                                    <p class="text-slate-900 font-bold">A.N Fasty Fandy (BCA)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border-t border-slate-200 pt-6 mt-8">
+                        <span class="block text-xs text-red-600 font-semibold uppercase">TIDAK MENERIMA TUKAR TAMBAH / BT JAPOST !!</span>
+                    </div>
+                </div>
+
+                <!-- Formulir Kontak HTML/CSS -->
+                <div class="bg-white border border-slate-200 rounded-lg p-8">
+                    <h3 class="font-classic text-xl font-bold text-slate-900 mb-6 uppercase">Hubungi Via Email</h3>
+                    <form onsubmit="submitContactForm(event)" class="space-y-6">
+                        <div>
+                            <label class="block text-xs text-slate-500 uppercase font-bold tracking-wider mb-2">Nama Lengkap</label>
+                            <input type="text" id="contact-name" placeholder="Masukkan nama Anda" class="w-full bg-slate-50 border border-slate-200 focus:border-mlGold rounded-lg px-4 py-3 text-sm text-slate-900 focus:outline-none" required>
+                        </div>
+                        <div>
+                            <label class="block text-xs text-slate-500 uppercase font-bold tracking-wider mb-2">Alamat Email</label>
+                            <input type="email" id="contact-email" placeholder="nama@email.com" class="w-full bg-slate-50 border border-slate-200 focus:border-mlGold rounded-lg px-4 py-3 text-sm text-slate-900 focus:outline-none" required>
+                        </div>
+                        <div>
+                            <label class="block text-xs text-slate-500 uppercase font-bold tracking-wider mb-2">Pesan Anda</label>
+                            <textarea id="contact-message" rows="4" placeholder="Tuliskan pertanyaan atau keluhan Anda di sini..." class="w-full bg-slate-50 border border-slate-200 focus:border-mlGold rounded-lg px-4 py-3 text-sm text-slate-900 focus:outline-none" required></textarea>
+                        </div>
+                        <button type="submit" class="w-full py-4 bg-gradient-to-r from-mlGold to-mlGold-dark text-white font-classic font-bold uppercase tracking-wider rounded-lg shadow-lg hover:brightness-110 transition">
+                            Kirim Pesan
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-50 border-t border-slate-200 text-slate-600 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                
+                <!-- Info Brand -->
+                <div class="md:col-span-2">
+                    <div class="flex items-center mb-4">
+                        <span class="text-xl font-bold font-classic tracking-wider text-mlGold">Fast.Shop.ID</span>
+                    </div>
+                    <p class="text-sm leading-relaxed max-w-sm mb-4">
+                        Platform e-commerce gaming nomor satu di Indonesia khusus penyediaan akun Mobile Legends kualitas tier tinggi yang dijamin aman dengan pembayaran fleksibel.
+                    </p>
+                    <p class="text-xs text-slate-400">
+                        &copy; 2026 Fast.Shop.ID. Semua Hak Dilindungi Undang-Undang.
+                    </p>
+                </div>
+
+                <!-- Navigasi Cepat -->
+                <div>
+                    <h4 class="font-classic text-sm text-slate-900 font-bold uppercase tracking-widest mb-4">Navigasi</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><button onclick="navigate('home')" class="hover:text-mlGold transition">Beranda</button></li>
+                        <li><button onclick="navigate('products')" class="hover:text-mlGold transition">Daftar Akun MLBB</button></li>
+                        <li><button onclick="navigate('contact')" class="hover:text-mlGold transition">Hubungi Support</button></li>
+                    </ul>
+                </div>
+
+                <!-- Informasi Legalitas (Materi PPT) -->
+                <div>
+                    <h4 class="font-classic text-sm text-slate-900 font-bold uppercase tracking-widest mb-4">Aspek Hukum</h4>
+                    <ul class="space-y-2 text-xs text-slate-500">
+                        <li>Badan Usaha Resmi (PT Berlisensi)</li>
+                        <li>Nomor Induk Berusaha (NIB) Terdaftar</li>
+                        <li>NPWP Perusahaan Terverifikasi</li>
+                        <li>Teknologi Sistem Anti-Fraud</li>
+                    </ul>
+                </div>
+
+            </div>
+            
+            <div class="border-t border-slate-200 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
+                <div class="flex flex-wrap gap-4">
+                    <span class="hover:text-mlGold cursor-pointer">Kebijakan Privasi</span>
+                    <span class="hover:text-mlGold cursor-pointer">Syarat & Ketentuan</span>
+                    <span class="hover:text-mlGold cursor-pointer">Aturan Refund</span>
+                </div>
+                <div class="flex items-center gap-3">
+                    <span class="text-[10px] uppercase font-bold tracking-widest text-slate-400">Supported Payments:</span>
+                    <span class="bg-white text-mlGold px-2 py-0.5 rounded font-bold border border-slate-200">CRYPTO</span>
+                    <span class="bg-white text-blue-600 px-2 py-0.5 rounded font-bold border border-slate-200">PAYPAL</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL POPUP UNTUK NOTIFIKASI -->
+    <div id="notif-modal" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4 hidden">
+        <div class="bg-white border border-slate-200 rounded-lg max-w-md w-full p-6 text-center shadow-2xl relative overflow-hidden">
+            <div class="absolute -top-12 -left-12 w-24 h-24 bg-amber-50 rounded-full blur-xl"></div>
+            <div id="modal-icon" class="text-mlGold mx-auto mb-4 flex justify-center"></div>
+            <h3 id="modal-title" class="font-classic text-2xl font-bold text-slate-900 mb-2 uppercase"></h3>
+            <p id="modal-text" class="text-slate-600 text-sm mb-6 leading-relaxed"></p>
+            <button onclick="closeModal()" class="w-full py-3 bg-gradient-to-r from-mlGold to-mlGold-dark text-white font-classic font-bold uppercase tracking-wider rounded-lg hover:brightness-110 transition">
+                Tutup Jendela
+            </button>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Database Akun Mobile Legends (4 Produk Ready dengan spesifikasi persis dari Anda + 1 Terjual agar pas minimal 5 produk)
+        const products = [
+            {
+                id: "mlbb-ready-01",
+                name: "mythic hero max",
+                price: 3330000,
+                status: "READY",
+                short_desc: "Akun High-Tier teratas dengan koleksi skin super lengkap siap pakai untuk turnamen pro.",
+                image: "images/mythic-hero-max.jpeg",
+                rank: "Mythic",
+                hero_count: "MAX",
+                emblem_lvl: "MAX",
+                skin_count: "433 Skins",
+                collector_skins: ["Gusion 'Cosmic Gleam'", "Granger 'Starfall Knight'", "Fanny 'Lightborn'"],
+                legend_skins: ["Miya 'Moderna Butterfly'", "Alucard 'Obsidian Blade'"],
+                full_desc: "Akun Mobile Legends kelas berat dengan total 433 skin premium. Seluruh hero dan emblem telah mencapai level MAX, menjamin pengalaman tempur bebas hambatan di tier Mythic. Sangat cocok untuk kolektor yang menginginkan status visual terbaik di dalam game."
+            },
+            {
+                id: "mlbb-ready-02",
+                name: "legend 5 hero 82 skin140",
+                price: 440000,
+                status: "READY",
+                short_desc: "Keseimbangan heroisme dan emblem maksimal untuk push rank yang efektif di tier Legend.",
+                image: "images/legend-5-hero-82-skin140.jpeg",
+                rank: "Legend 5",
+                hero_count: "82",
+                emblem_lvl: "MAX",
+                skin_count: "140 Skins",
+                collector_skins: ["Chou 'Dragon Boy'", "Roger 'Phantom Pirate'"],
+                legend_skins: ["None (Has 12 Epic Limited Skins)"],
+                full_desc: "Akun seimbang dengan 82 Hero dan emblem MAX. Sangat cocok untuk pemain yang berfokus pada push rank di tier Legend V dengan koleksi 140 skin yang kaya variasi visual."
+            },
+            {
+                id: "mlbb-ready-03",
+                name: "legend 5 hero 82 skin135",
+                price: 375000,
+                status: "READY",
+                short_desc: "Akun fighter handal dengan pilihan hero serbaguna dan status emblem tertinggi.",
+                image: "images/legend-5-hero-82-skin35.jpeg",
+                rank: "Legend 5",
+                hero_count: "85",
+                emblem_lvl: "MAX",
+                skin_count: "135 Skins",
+                collector_skins: ["Lancelot 'Royal Matador'"],
+                legend_skins: ["None (Has 8 Epic Shop Skins)"],
+                full_desc: "Pilihan terbaik untuk gamer taktis dengan 85 Hero tangguh dan 135 skin menarik. Dengan emblem MAX, akun ini memberikan dorongan statistik penuh sejak detik pertama di Land of Dawn."
+            },
+            {
+                id: "mlbb-ready-04",
+                name: "mythic hero 76",
+                price: 414000,
+                status: "READY",
+                short_desc: "Kombinasi eksklusif skin limited super langka dan tier legendaris Mythic.",
+                image: "images/mythic-hero-76.jpeg",
+                rank: "Mythic",
+                hero_count: "76",
+                emblem_lvl: "MAX",
+                skin_count: "144 Skins (Termasuk Skin Limited)",
+                collector_skins: ["Aldous 'Realm Watcher'", "Wanwan 'Pixel Blast'"],
+                legend_skins: ["Saber 'Codename Storm'"],
+                full_desc: "Menyertakan 144 skin dengan jajaran Skin Limited langka. Tier Mythic aktif dengan 76 hero utama yang siap mendominasi pertempuran kompetitif harian Anda."
+            },
+            {
+                id: "mlbb-sold-05",
+                name: "mythic hero max skin 429",
+                price: 2100000,
+                status: "TERJUAL",
+                short_desc: "Akun kompetitif dengan riwayat skin turnamen yang solid. (Stok Terjual)",
+                image: "images/mythic-hero-max-skin-429.jpeg",
+                rank: "Mythic Honor",
+                hero_count: "90",
+                emblem_lvl: "MAX",
+                skin_count: "180 Skins",
+                collector_skins: ["Valir 'Demonlord'"],
+                legend_skins: ["None"],
+                full_desc: "Sudah terjual ke pembeli global via PayPal. Halaman arsip ini dipertahankan sebagai bukti transparansi transaksi resmi di Fast.Shop.ID."
+            }
+        ];
+
+        // Global State
+        let cart = [];
+        let currentDetailProduct = null;
+
+        // Inisialisasi Website
+        window.addEventListener('DOMContentLoaded', () => {
+            renderProducts();
+            lucide.createIcons();
+            
+            // Konfigurasi Navigasi Mobile Toggle
+            const menuBtn = document.getElementById('mobile-menu-btn');
+            const menu = document.getElementById('mobile-menu');
+            menuBtn.addEventListener('click', () => {
+                menu.classList.toggle('hidden');
+            });
+        });
+
+        // Format Rupiah Helper
+        function formatRupiah(number) {
+            return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(number);
+        }
+
+        // Router / Navigasi Halaman Utama
+        function navigate(viewName) {
+            // Sembunyikan semua section
+            document.querySelectorAll('.view-section').forEach(sec => {
+                sec.classList.add('hidden');
+            });
+            
+            // Tampilkan section yang dipilih
+            const targetView = document.getElementById(`view-${viewName}`);
+            if (targetView) {
+                targetView.classList.remove('hidden');
+            }
+
+            // Atur status aktif di Menu Bar Header
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('text-mlGold', 'border-mlGold');
+                btn.classList.add('text-slate-600', 'border-transparent');
+            });
+
+            const activeBtn = document.getElementById(`nav-${viewName}`);
+            if (activeBtn) {
+                activeBtn.classList.remove('text-slate-600', 'border-transparent');
+                activeBtn.classList.add('text-mlGold', 'border-mlGold');
+            }
+
+            // Scroll ke atas otomatis
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // Tutup menu mobile
+            document.getElementById('mobile-menu').classList.add('hidden');
+        }
+
+        // Render Daftar Produk ke Grid HTML secara dinamis dengan tema putih
+        function renderProducts() {
+            const homeGrid = document.getElementById('featured-products-grid');
+            const catalogGrid = document.getElementById('all-products-grid');
+
+            let homeHtml = '';
+            let catalogHtml = '';
+
+            products.forEach(p => {
+                const isReady = p.status === "READY";
+                const badgeColor = isReady ? 'bg-amber-50 text-mlGold border border-mlGold/30' : 'bg-red-50 text-red-500 border border-red-200';
+                const buttonHtml = isReady 
+                    ? `<button onclick="viewProductDetail('${p.id}')" class="px-4 py-2 bg-amber-50 hover:bg-mlGold border border-mlGold/40 hover:text-white text-mlGold text-xs font-bold font-classic uppercase tracking-widest rounded-lg transition">Lihat Detail</button>`
+                    : `<span class="px-4 py-2 bg-slate-100 text-slate-400 text-xs font-bold font-classic uppercase rounded-lg">Habis</span>`;
+
+                const cardTemplate = `
+                    <div class="bg-white border border-slate-200 hover:border-mlGold/40 transition-all duration-300 rounded-lg overflow-hidden shadow-sm hover:shadow-md flex flex-col justify-between group">
+                        <div class="relative overflow-hidden aspect-video">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/30 to-transparent opacity-60 z-10"></div>
+                            <span class="absolute top-3 left-3 ${badgeColor} text-[10px] font-black uppercase tracking-wider px-2.5 py-1 rounded-lg z-20 shadow-sm">
+                                ${p.status}
+                            </span>
+                            <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 ${!isReady ? 'grayscale opacity-55' : ''}">
+                        </div>
+                        
+                        <div class="p-6 flex-grow flex flex-col justify-between">
+                            <div>
+                                <h3 class="font-classic text-lg font-bold text-slate-900 mb-2 line-clamp-1 group-hover:text-mlGold transition">
+                                    ${p.name}
+                                </h3>
+                                <p class="text-slate-500 text-xs line-clamp-2 mb-4 leading-relaxed">
+                                    ${p.short_desc}
+                                </p>
+                                
+                                <div class="grid grid-cols-2 gap-2 text-[10px] uppercase font-bold tracking-wider text-slate-500 mb-6">
+                                    <div class="flex items-center gap-1.5">
+                                        <i data-lucide="award" class="w-4 h-4 text-mlGold"></i>
+                                        <span>Rank: ${p.rank}</span>
+                                    </div>
+                                    <div class="flex items-center gap-1.5">
+                                        <i data-lucide="shield" class="w-4 h-4 text-mlGold"></i>
+                                        <span>Hero: ${p.hero_count}</span>
+                                    </div>
+                                    <div class="flex items-center gap-1.5">
+                                        <i data-lucide="sparkles" class="w-4 h-4 text-mlGold"></i>
+                                        <span>Skin: ${p.skin_count}</span>
+                                    </div>
+                                    <div class="flex items-center gap-1.5">
+                                        <i data-lucide="bookmark-check" class="w-4 h-4 text-mlGold"></i>
+                                        <span>Emblem: ${p.emblem_lvl}</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="border-t border-slate-100 pt-4 flex items-center justify-between">
+                                    <div class="text-mlGold font-classic font-black text-lg">
+                                        ${formatRupiah(p.price)}
+                                    </div>
+                                    ${buttonHtml}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                catalogHtml += cardTemplate;
+            });
+
+            // Tampilkan 3 produk pertama di Beranda (Featured)
+            const featured = products.slice(0, 3);
+            featured.forEach(p => {
+                const isReady = p.status === "READY";
+                const badgeColor = isReady ? 'bg-amber-50 text-mlGold border border-mlGold/30' : 'bg-red-50 text-red-500 border border-red-200';
+                const cardTemplate = `
+                    <div class="bg-white border border-slate-200 hover:border-mlGold/40 transition-all duration-300 rounded-lg overflow-hidden shadow-sm hover:shadow-md flex flex-col justify-between group">
+                        <div class="relative overflow-hidden aspect-video">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/30 to-transparent opacity-60 z-10"></div>
+                            <span class="absolute top-3 left-3 ${badgeColor} text-[10px] font-black uppercase tracking-wider px-2.5 py-1 rounded-lg z-20 shadow-sm">
+                                REKOMENDASI
+                            </span>
+                            <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        </div>
+                        
+                        <div class="p-6 flex-grow flex flex-col justify-between">
+                            <div>
+                                <h3 class="font-classic text-lg font-bold text-slate-900 mb-2 line-clamp-1 group-hover:text-mlGold transition">
+                                    ${p.name}
+                                </h3>
+                                <p class="text-slate-500 text-xs line-clamp-2 mb-4 leading-relaxed">
+                                    ${p.short_desc}
+                                </p>
+                                
+                                <div class="grid grid-cols-2 gap-2 text-[10px] uppercase font-bold tracking-wider text-slate-500 mb-6">
+                                    <div class="flex items-center gap-1.5">
+                                        <i data-lucide="award" class="w-4 h-4 text-mlGold"></i>
+                                        <span>Rank: ${p.rank}</span>
+                                    </div>
+                                    <div class="flex items-center gap-1.5">
+                                        <i data-lucide="shield" class="w-4 h-4 text-mlGold"></i>
+                                        <span>Hero: ${p.hero_count}</span>
+                                    </div>
+                                    <div class="flex items-center gap-1.5">
+                                        <i data-lucide="sparkles" class="w-4 h-4 text-mlGold"></i>
+                                        <span>Skin: ${p.skin_count}</span>
+                                    </div>
+                                    <div class="flex items-center gap-1.5">
+                                        <i data-lucide="bookmark-check" class="w-4 h-4 text-mlGold"></i>
+                                        <span>Emblem: ${p.emblem_lvl}</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="border-t border-slate-100 pt-4 flex items-center justify-between">
+                                    <div class="text-mlGold font-classic font-black text-lg">
+                                        ${formatRupiah(p.price)}
+                                    </div>
+                                    <button onclick="viewProductDetail('${p.id}')" class="px-4 py-2 bg-amber-50 hover:bg-mlGold border border-mlGold/40 hover:text-white text-mlGold text-xs font-bold font-classic uppercase tracking-widest rounded-lg transition">
+                                        Lihat Detail
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                homeHtml += cardTemplate;
+            });
+
+            if (homeGrid) homeGrid.innerHTML = homeHtml;
+            if (catalogGrid) catalogGrid.innerHTML = catalogHtml;
+
+            lucide.createIcons();
+        }
+
+        // Tampilkan Detail Produk secara Dinamis
+        function viewProductDetail(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+
+            currentDetailProduct = product;
+
+            const container = document.getElementById('detail-container');
+            container.innerHTML = `
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    
+                    <!-- Sisi Kiri: Visual Akun -->
+                    <div>
+                        <div class="relative rounded-lg overflow-hidden border border-slate-200 aspect-video mb-6 shadow-md">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/10 to-transparent opacity-40 z-10"></div>
+                            <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover">
+                        </div>
+                        
+                        <div class="bg-slate-50 p-6 rounded-lg border border-slate-200">
+                            <h4 class="font-classic text-sm text-mlGold font-bold uppercase tracking-widest mb-4">Informasi Tambahan Pemilik Pertama</h4>
+                            <ul class="space-y-2 text-xs text-slate-500">
+                                <li class="flex justify-between border-b border-slate-200 pb-2">
+                                    <span>Akun Terverifikasi</span>
+                                    <span class="text-green-600 font-bold">YA (KTP & No. HP terdaftar)</span>
+                                </li>
+                                <li class="flex justify-between border-b border-slate-200 pb-2">
+                                    <span>Anti Hack-Back</span>
+                                    <span class="text-green-600 font-bold">Garansi Seumur Hidup</span>
+                                </li>
+                                <li class="flex justify-between pb-1">
+                                    <span>Status Akun</span>
+                                    <span class="text-slate-800 font-bold">Unbind Moonton (Siap Bind Data Baru)</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Sisi Kanan: Spesifikasi Lengkap -->
+                    <div class="flex flex-col justify-between">
+                        <div>
+                            <span class="bg-amber-50 text-mlGold text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full border border-mlGold/30">
+                                SPESIFIKASI PREMIUM
+                            </span>
+                            <h1 class="font-classic text-3xl font-black text-slate-900 mt-4 mb-4 uppercase leading-tight">
+                                ${product.name}
+                            </h1>
+                            <p class="text-mlGold font-classic font-black text-2xl mb-6">
+                                ${formatRupiah(product.price)}
+                            </p>
+
+                            <!-- Spek Grid -->
+                            <div class="grid grid-cols-2 gap-4 mb-6 text-sm text-slate-600">
+                                <div class="bg-slate-50 p-3 rounded-lg border border-slate-200">
+                                    <p class="text-xs text-slate-400 uppercase tracking-wider">Rank Tier</p>
+                                    <p class="text-slate-900 font-bold">${product.rank}</p>
+                                </div>
+                                <div class="bg-slate-50 p-3 rounded-lg border border-slate-200">
+                                    <p class="text-xs text-slate-400 uppercase tracking-wider">Total Hero</p>
+                                    <p class="text-slate-900 font-bold">${product.hero_count} Heroes</p>
+                                </div>
+                                <div class="bg-slate-50 p-3 rounded-lg border border-slate-200">
+                                    <p class="text-xs text-slate-400 uppercase tracking-wider">Total Skin</p>
+                                    <p class="text-slate-900 font-bold">${product.skin_count}</p>
+                                </div>
+                                <div class="bg-slate-50 p-3 rounded-lg border border-slate-200">
+                                    <p class="text-xs text-slate-400 uppercase tracking-wider">Level Emblem</p>
+                                    <p class="text-mlGold font-bold">${product.emblem_lvl}</p>
+                                </div>
+                            </div>
+
+                            <div class="mb-6">
+                                <h4 class="font-classic text-sm text-slate-900 font-bold uppercase tracking-widest mb-2">Deskripsi Lengkap Akun</h4>
+                                <p class="text-slate-600 text-sm leading-relaxed font-light">
+                                    ${product.full_desc}
+                                </p>
+                            </div>
+
+                            <!-- List Skin Terkemuka -->
+                            <div class="mb-8 space-y-3">
+                                <div>
+                                    <h4 class="font-classic text-xs text-mlGold font-bold uppercase tracking-wider mb-1">Skin Collector Unggulan</h4>
+                                    <div class="flex flex-wrap gap-2">
+                                        ${product.collector_skins.map(skin => `<span class="bg-amber-50 border border-mlGold/30 text-mlGold text-[10px] font-bold px-2 py-1 rounded">${skin}</span>`).join('')}
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="font-classic text-xs text-blue-600 font-bold uppercase tracking-wider mb-1">Skin Legend Unggulan</h4>
+                                    <div class="flex flex-wrap gap-2">
+                                        ${product.legend_skins.map(skin => `<span class="bg-blue-50 border border-blue-200 text-blue-600 text-[10px] font-bold px-2 py-1 rounded">${skin}</span>`).join('')}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tombol Pembelian -->
+                        <div class="flex flex-col sm:flex-row gap-4 pt-6 border-t border-slate-200">
+                            <button onclick="addToCart('${product.id}')" class="flex-1 py-4 bg-white border border-mlGold/40 text-mlGold hover:bg-mlGold hover:text-white font-classic font-bold uppercase tracking-wider rounded-lg transition">
+                                Tambah ke Keranjang
+                            </button>
+                            <button onclick="buyNow('${product.id}')" class="flex-1 py-4 bg-gradient-to-r from-mlGold to-mlGold-dark text-white font-classic font-bold uppercase tracking-wider rounded-lg hover:brightness-110 transition shadow-md">
+                                Beli Sekarang
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            `;
+
+            lucide.createIcons();
+            navigate('product-detail');
+        }
+
+        // Tambah ke Keranjang
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+
+            const exists = cart.find(item => item.id === productId);
+            if (exists) {
+                showModal("Sudah Ada", "Akun game ini sudah didaftarkan di keranjang belanja Anda.", "info");
+                return;
+            }
+
+            cart.push(product);
+            updateCartUI();
+            showModal("Berhasil!", `${product.name} dimasukkan ke keranjang belanja.`, "success");
+        }
+
+        // Update UI Keranjang
+        function updateCartUI() {
+            document.getElementById('cart-badge').innerText = cart.length;
+
+            const container = document.getElementById('cart-items-container');
+            const subtotalEl = document.getElementById('cart-subtotal');
+            const totalEl = document.getElementById('cart-total');
+
+            if (cart.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-16 bg-slate-50 border border-slate-200 rounded-lg">
+                        <div class="text-slate-300 mb-4 flex justify-center">
+                            <i data-lucide="shopping-bag" class="w-16 h-16"></i>
+                        </div>
+                        <h3 class="font-classic text-xl font-bold text-slate-900 mb-2 uppercase">Keranjang Kosong</h3>
+                        <p class="text-slate-500 text-sm max-w-md mx-auto mb-6">Anda belum menambahkan akun Mobile Legends pilihan Anda ke dalam keranjang belanja.</p>
+                        <button onclick="navigate('products')" class="px-6 py-3 bg-mlGold text-white font-classic font-bold uppercase text-xs tracking-wider rounded-lg hover:brightness-110 transition">
+                            Cari Akun MLBB
+                        </button>
+                    </div>
+                `;
+                subtotalEl.innerText = formatRupiah(0);
+                totalEl.innerText = formatRupiah(0);
+                lucide.createIcons();
+                return;
+            }
+
+            let html = '';
+            let subtotal = 0;
+
+            cart.forEach(item => {
+                subtotal += item.price;
+                html += `
+                    <div class="flex flex-col sm:flex-row items-center justify-between p-4 bg-slate-50 border border-slate-200 rounded-lg gap-4">
+                        <div class="flex flex-col sm:flex-row items-center gap-4 w-full">
+                            <div class="w-24 h-16 rounded overflow-hidden border border-slate-200 shrink-0">
+                                <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover">
+                            </div>
+                            <div class="text-center sm:text-left">
+                                <h4 class="font-classic text-base font-bold text-slate-900 line-clamp-1">${item.name}</h4>
+                                <p class="text-xs text-mlGold font-bold">${formatRupiah(item.price)}</p>
+                                <p class="text-[10px] text-slate-500 mt-1 uppercase">Rank: ${item.rank} | Hero: ${item.hero_count} | Skin: ${item.skin_count}</p>
+                            </div>
+                        </div>
+                        <button onclick="removeFromCart('${item.id}')" class="text-red-500 hover:text-red-700 p-2.5 border border-red-200 hover:bg-red-50 rounded-lg shrink-0 transition">
+                            <i data-lucide="trash-2" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+            subtotalEl.innerText = formatRupiah(subtotal);
+            totalEl.innerText = formatRupiah(subtotal);
+            lucide.createIcons();
+        }
+
+        // Hapus dari Keranjang
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            updateCartUI();
+        }
+
+        // Beli Sekarang (Direct to Checkout)
+        function buyNow(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+
+            const exists = cart.find(item => item.id === productId);
+            if (!exists) {
+                cart.push(product);
+                updateCartUI();
+            }
+
+            setupCheckoutView();
+            navigate('checkout');
+        }
+
+        // Setup Checkout View
+        function setupCheckoutView() {
+            const summaryContainer = document.getElementById('checkout-product-summary');
+            if (cart.length === 0) {
+                summaryContainer.innerHTML = `<p class="text-sm text-slate-500">Tidak ada produk dalam daftar checkout.</p>`;
+                return;
+            }
+
+            let html = '';
+            let total = 0;
+
+            cart.forEach(item => {
+                total += item.price;
+                html += `
+                    <div class="flex items-center justify-between bg-slate-50 p-3 rounded-lg border border-slate-200">
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-10 rounded overflow-hidden border border-slate-200">
+                                <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover">
+                            </div>
+                            <div>
+                                <h4 class="text-xs font-bold text-slate-900 line-clamp-1">${item.name}</h4>
+                                <p class="text-[10px] text-slate-400 uppercase">Verifikasi Premium</p>
+                            </div>
+                        </div>
+                        <span class="text-xs text-mlGold font-bold">${formatRupiah(item.price)}</span>
+                    </div>
+                `;
+            });
+
+            html += `
+                <div class="border-t border-slate-200 pt-4 flex justify-between items-center text-sm">
+                    <span class="text-slate-500">Total Pembayaran Anda</span>
+                    <span class="text-mlGold font-classic font-bold text-lg">${formatRupiah(total)}</span>
+                </div>
+            `;
+
+            summaryContainer.innerHTML = html;
+        }
+
+        // Proses Checkout
+        function processCheckout() {
+            const email = document.getElementById('checkout-email').value;
+            const phone = document.getElementById('checkout-phone').value;
+            const selectedPayment = document.querySelector('input[name="payment_method"]:checked').value;
+
+            if (!email || !phone) {
+                showModal("Lengkapi Kredensial", "Silakan isi alamat email dan nomor WhatsApp Anda untuk pengiriman data akun.", "info");
+                return;
+            }
+
+            let detailLangkah = '';
+            if (selectedPayment === 'crypto') {
+                detailLangkah = `Selesaikan transfer USDT/BTC ke alamat wallet kami. Tim Fast.Shop.ID akan segera mengirimkan konfirmasi serah terima email Moonton ke WhatsApp ${phone} Anda secara instan.`;
+            } else {
+                detailLangkah = `Kami telah menerbitkan tagihan PayPal resmi ke email ${email}. Transaksi divalidasi sistem dalam waktu 1-5 menit.`;
+            }
+
+            cart = [];
+            updateCartUI();
+
+            showModal(
+                "Pembelian Diproses!",
+                `Terima kasih telah mempercayai Fast.Shop.ID. ${detailLangkah}`,
+                "success"
+            );
+
+            setTimeout(() => {
+                navigate('home');
+            }, 6000);
+        }
+
+        // Kirim Form Kontak
+        function submitContactForm(event) {
+            event.preventDefault();
+            const name = document.getElementById('contact-name').value;
+            const email = document.getElementById('contact-email').value;
+
+            showModal(
+                "Pesan Terkirim!",
+                `Halo ${name}, tim admin Fast.Shop.ID telah menerima pesan Anda. Kami akan segera menghubungi Anda di ${email} dalam waktu maksimal 1x24 jam.`,
+                "success"
+            );
+
+            document.getElementById('contact-name').value = '';
+            document.getElementById('contact-email').value = '';
+            document.getElementById('contact-message').value = '';
+        }
+
+        // Pop Modal Alert System
+        function showModal(title, text, type) {
+            const modal = document.getElementById('notif-modal');
+            const modalIcon = document.getElementById('modal-icon');
+            const modalTitle = document.getElementById('modal-title');
+            const modalText = document.getElementById('modal-text');
+
+            modalTitle.innerText = title;
+            modalText.innerText = text;
+
+            if (type === 'success') {
+                modalIcon.innerHTML = `<div class="bg-green-50 text-green-600 p-4 rounded-full border border-green-200"><i data-lucide="check-circle-2" class="w-12 h-12"></i></div>`;
+            } else if (type === 'info') {
+                modalIcon.innerHTML = `<div class="bg-blue-50 text-blue-600 p-4 rounded-full border border-blue-200"><i data-lucide="info" class="w-12 h-12"></i></div>`;
+            } else {
+                modalIcon.innerHTML = `<div class="bg-amber-50 text-mlGold p-4 rounded-full border border-mlGold/30"><i data-lucide="shield-alert" class="w-12 h-12"></i></div>`;
+            }
+
+            lucide.createIcons();
+            modal.classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('notif-modal').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
